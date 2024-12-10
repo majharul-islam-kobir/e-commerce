@@ -3,7 +3,7 @@ import image from "../../assets/images/logo.png"
 
 function CartItem() {
   return (
-    <div className='container mx-auto'>
+    <div className='w-8/12 mx-auto'>
         <div className='grid grid-cols-5 mt-5 my-5 border-b-2 pb-3'>
         <div className='flex justify-center items-center'>
           <p className='font-semibold text-2xl'>Imege</p>

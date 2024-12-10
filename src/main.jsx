@@ -12,6 +12,9 @@ import store from './app/Store.jsx'
 import { Provider } from 'react-redux'
 import Privacy from './pages/Privacy.jsx'
 import CartItem from './features/cart/CartItem.jsx'
+import LogIn from './pages/LogIn.jsx'
+import Register from './pages/Register.jsx'
+import AuthProvider from './provider/AuthProvider.jsx'
 
 const router = createBrowserRouter ([
   {
@@ -49,6 +52,14 @@ const router = createBrowserRouter ([
       {
         path: "/cart",
         element: <CartItem />
+      },
+      {
+        path: "/login",
+        element: <LogIn />
+      },
+      {
+        path: "/register",
+        element: <Register />
       }
       
 
@@ -59,7 +70,9 @@ const router = createBrowserRouter ([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-     <RouterProvider router={router}/>
+      <AuthProvider>
+        <RouterProvider router={router}/>
+      </AuthProvider>
     </Provider>
   </StrictMode>,
 )

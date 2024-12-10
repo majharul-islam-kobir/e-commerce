@@ -13,7 +13,7 @@ function Products() {
       try {
         const response = await fetch("http://localhost:3000/products");
         const data = await response.json();
-        dispatch(setProducts(data)); // প্রোডাক্ট ডেটা সেট
+        dispatch(setProducts(data)); 
       } catch (error) {
         console.error("Error fetching products:", error);
       }

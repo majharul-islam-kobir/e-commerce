@@ -2,8 +2,14 @@ import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router";
 import image from "../assets/images/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../context";
 
 function Nevber() {
+  const {name} = useContext(AuthContext)
+  console.log(name);
+  
+
   return (
     <nav className="bg-white text-black p-4 shadow-md">
       <div className="flex justify-between items-center max-w-[1100px] mx-auto flex-wrap">
@@ -30,9 +36,12 @@ function Nevber() {
           <Link to="/cart" className="text-xl">
             <FaCartShopping />
           </Link>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded">
-            Login | Register
-          </button>
+          <Link to="/login" className="px-4 py-2 bg-blue-500 text-white rounded">
+            Login 
+          </Link>
+          <Link to="/register" className="px-4 py-2 bg-blue-500 text-white rounded">
+            Register 
+          </Link>
         </div>
       </div>
 

@@ -11,10 +11,10 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // যদি ডেটা ফেচ করে স্টোরে সেট করতে হয়।
+   
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/products'); // API এন্ডপয়েন্ট সঠিক কিনা চেক করো।
+        const response = await fetch('http://localhost:3000/products'); 
         const data = await response.json();
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -61,7 +61,7 @@ function Home() {
       {/* Additional Sections */}
       <InfoSection />
       <CategorySection />
-      <Products /> {/* Products কম্পোনেন্টটি এখানে রেন্ডার হবে। */}
+      <Products /> 
       <Shop />
     </div>
   );
