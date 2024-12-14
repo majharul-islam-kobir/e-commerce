@@ -7,7 +7,7 @@ function Footer() {
         {/* About Section */}
         <div>
           <h3 className="font-bold text-lg mb-4">About Us</h3>
-          <p>
+          <p className="text-sm sm:text-base">
             Taqwa-Shop is a trusted online shopping platform, offering a wide variety of quality products at affordable prices. 
             We ensure excellent customer service and a seamless shopping experience.
           </p>
@@ -16,7 +16,7 @@ function Footer() {
         {/* Quick Links */}
         <div>
           <h3 className="font-bold text-lg mb-4">Quick Links</h3>
-          <ul>
+          <ul className="space-y-2">
             <li><a href="/" className="hover:text-red-500">Home</a></li>
             <li><a href="/about" className="hover:text-red-500">About Us</a></li>
             <li><a href="/shop" className="hover:text-red-500">Shop</a></li>
@@ -35,7 +35,7 @@ function Footer() {
         {/* Social Media Links */}
         <div>
           <h3 className="font-bold text-lg mb-4">Follow Us</h3>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 mb-6">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
               <FaFacebook className="text-2xl hover:text-red-500" />
             </a>
@@ -49,12 +49,12 @@ function Footer() {
               <FaLinkedin className="text-2xl hover:text-red-500" />
             </a>
           </div>
-          <div className='flex justify-start items-center mt-10 '>
-             <input type="text" placeholder='Write Sumthing' className='p-2 border-2 rounded-md'/> 
-             <button className='px-4 py-[0.5rem] border-2 bg-red-600 rounded-md'>Submit</button>
+          
+          {/* Subscribe Section */}
+          <div className='flex flex-col sm:flex-row justify-start items-center mt-6 space-y-3 sm:space-y-0 sm:space-x-4'>
+            <input type="text" placeholder='Write Something' className='p-2 border-2 rounded-md w-full sm:w-auto' />
+            <button className='px-4 py-[0.5rem] border-2 bg-red-600 rounded-md'>Submit</button>
           </div>
-         
-
         </div>
       </div>
 

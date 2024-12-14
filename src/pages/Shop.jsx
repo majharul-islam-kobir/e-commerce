@@ -1,21 +1,27 @@
-import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa"; 
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setProducts } from "../features/product/productSlice";
+import { addToCart } from "../features/cart/cartSlice";
+import { FaStar } from "react-icons/fa";
+
 function Shop() {
-    const [products, setProducts] = useState([]);
+    const products = useSelector((state) => state.product.products); 
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch("http://localhost:3000/shop")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((data) => setProducts(data))
-            .catch((error) => console.error("Error fetching products:", error));
-    }, []);
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/shop");
+                const data = await response.json();
+                dispatch(setProducts(data));
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        };
+        fetchProducts();
+    }, [dispatch]);
 
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
         return <p>Loading products...</p>;
     }
 
@@ -26,7 +32,7 @@ function Shop() {
                 {products.map((product) => (
                     <div
                         key={product.id}
-                        className="border p-4 rounded hover:scale-105 transition-all duration-500 ease-in-out"
+                        className="border p-4 rounded hover:scale-105 transition-all duration-500 ease-in-out relative"
                     >
                         <img
                             src={product.image}
@@ -36,24 +42,22 @@ function Shop() {
                         <h2 className="text-lg font-bold">{product.title}</h2>
                         <p>Price: ${product.price}</p>
                         <p>
-                            Rating: {product.rating.rate} ({product.rating.count}{" "}
-                            reviews)
+                            Rating: {product.rating.rate} ({product.rating.count} reviews)
                         </p>
                         <div className="flex justify-center text-yellow-500">
-                            {Array.from({
-                                length: Math.floor(product.rating.rate),
-                            }).map((_, index) => (
-                                <FaStar key={index} />
-                            ))}
+                            {Array.from({ length: Math.floor(product.rating.rate) }).map(
+                                (_, index) => (
+                                    <FaStar key={index} />
+                                )
+                            )}
                         </div>
-                            
-                        <div className="relative">
-                            <div className="absolute bottom-4 right-2 flex items-center justify-center w-8 h-8 bg-red-600 group text-white text-sm rounded-full hover:w-32 hover:bg-red-700 transition-all duration-300">
-                                <span className="group-hover:hidden">+</span>
-                                <span className="hidden group-hover:block">Add to Cart</span>
-                            </div>
-                   </div>
-
+                        <button
+                            onClick={() => dispatch(addToCart(product))}
+                            className="absolute bottom-4 right-2 flex items-center justify-center w-8 h-8 bg-red-600 group text-white text-sm rounded-full hover:w-32 hover:bg-red-700 transition-all duration-300"
+                        >
+                            <span className="group-hover:hidden">+</span>
+                            <span className="hidden group-hover:block">Add to Cart</span>
+                        </button>
                     </div>
                 ))}
             </div>
