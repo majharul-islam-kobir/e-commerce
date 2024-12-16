@@ -8,7 +8,7 @@ function App() {
   return (
      <div>
       <Nevber />
-      <Outlet />
+       <Outlet />
       <Footer />
      </div>
   )
